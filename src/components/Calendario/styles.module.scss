@@ -1,0 +1,498 @@
+.calendario {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 16px;
+  width: auto;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  font-size: 16px;
+  color: #666;
+}
+
+.cabecalho {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.tituloPrincipal {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  text-align: center;
+}
+
+.navegacao {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.botaoNavegacao {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  color: #374151;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #9ca3af;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.botaoHoje {
+  padding: 8px 24px;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: #2563eb;
+    border-color: #2563eb;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.tituloMes {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  text-align: center;
+  margin: 0;
+}
+
+.abasMeses {
+  display: flex;
+  overflow-x: auto;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+  padding: 0 8px;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 2px;
+  }
+}
+
+.aba {
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    color: #374151;
+    background: #f3f4f6;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.abaAtiva {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+  background: white;
+}
+
+.calendarioGrid {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  overflow-x: auto;
+}
+
+.diasCabecalho {
+  display: grid;
+  grid-template-columns: 120px repeat(7, 1fr);
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+  min-width: 800px;
+}
+
+.turnoVazio {
+  min-height: 60px;
+}
+
+.diaCabecalho {
+  padding: 12px 8px;
+  text-align: center;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.diaNome {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.diaNumero {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 2px 0;
+}
+
+.diaMes {
+  font-size: 12px;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+
+.hoje {
+  background: #eff6ff;
+
+  .diaNumero {
+    color: #3b82f6;
+  }
+}
+
+.fimDeSemana {
+  background: #fef2f2;
+
+  .diaNumero {
+    color: #dc2626;
+  }
+}
+
+.linhaTurno {
+  display: grid;
+  grid-template-columns: 120px repeat(7, 1fr);
+  border-bottom: 1px solid #f3f4f6;
+  min-width: 800px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.turnoCabecalho {
+  padding: 12px 8px;
+  border-right: 1px solid #e5e7eb;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.turnoId {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.turnoHorario {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+.turnoNome {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.celulaDia {
+  padding: 8px;
+  border-right: 1px solid #f3f4f6;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.agendamento {
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+  border-radius: 6px;
+  padding: 8px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #bfdbfe;
+    border-color: #60a5fa;
+  }
+}
+
+.agendamentoSala {
+  font-weight: 600;
+  color: #1e40af;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.agendamentoCliente {
+  font-size: 12px;
+  color: #374151;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.agendamentoEmpresa {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.botaoAgendar {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #d1d5db;
+  border-radius: 6px;
+  background: #f9fafb;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px;
+
+  &:hover:not(:disabled) {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    color: #3b82f6;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    border: 2px dashed #e5e7eb;
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    &:hover {
+      border-color: #e5e7eb;
+      background: #f3f4f6;
+      color: #9ca3af;
+      transform: none;
+    }
+  }
+}
+
+.carregando {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.vazio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  font-style: italic;
+  padding: 32px;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .calendario {
+    margin: 8px;
+    border-radius: 4px;
+  }
+
+  .cabecalho {
+    padding: 12px;
+  }
+
+  .navegacao {
+    gap: 4px;
+  }
+
+  .botaoNavegacao,
+  .botaoHoje {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .tituloMes {
+    font-size: 18px;
+  }
+
+  .abasMeses {
+    padding: 0 4px;
+  }
+
+  .aba {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .diasCabecalho {
+    grid-template-columns: 100px repeat(7, 1fr);
+    min-width: 700px;
+  }
+
+  .turnoVazio {
+    min-height: 50px;
+  }
+
+  .diaCabecalho {
+    padding: 8px 4px;
+  }
+
+  .diaNumero {
+    font-size: 18px;
+  }
+
+  .linhaTurno {
+    grid-template-columns: 100px repeat(7, 1fr);
+    min-width: 700px;
+  }
+
+  .turnoCabecalho {
+    padding: 8px 4px;
+  }
+
+  .turnoId {
+    font-size: 14px;
+  }
+
+  .celulaDia {
+    min-height: 70px;
+    padding: 6px;
+  }
+
+  .agendamento,
+  .botaoAgendar {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .diasCabecalho {
+    grid-template-columns: 80px repeat(7, 1fr);
+    min-width: 600px;
+  }
+
+  .turnoVazio {
+    min-height: 40px;
+  }
+
+  .linhaTurno {
+    grid-template-columns: 80px repeat(7, 1fr);
+    min-width: 600px;
+  }
+
+  .diaCabecalho {
+    padding: 6px 2px;
+  }
+
+  .diaNome {
+    font-size: 11px;
+  }
+
+  .diaNumero {
+    font-size: 16px;
+  }
+
+  .diaMes {
+    font-size: 11px;
+  }
+
+  .turnoCabecalho {
+    padding: 6px 2px;
+  }
+
+  .turnoId {
+    font-size: 13px;
+  }
+
+  .turnoHorario {
+    font-size: 11px;
+  }
+
+  .turnoNome {
+    font-size: 10px;
+  }
+
+  .celulaDia {
+    min-height: 60px;
+    padding: 4px;
+  }
+}
